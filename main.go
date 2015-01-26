@@ -38,17 +38,13 @@ func LoadData() []Datum {
 
 func SaveData(m *map[string][]*Datum) {
 	b := new(bytes.Buffer)
-
 	e := gob.NewEncoder(b)
-
-	// Encoding the map
 	err := e.Encode(*m)
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Println("Saving to Disk...")
-	// fmt.Println("%v", b.Bytes())
 	err = ioutil.WriteFile("/tmp/my.db", b.Bytes(), 0644)
 	fmt.Println("Save complete!")
 }
@@ -104,7 +100,7 @@ func main() {
 	result := m[key]
 	elapsed := time.Since(start)
 
-	fmt.Printf("HELLO. Done!\n")
-	fmt.Printf("Lookup took %s\n", elapsed)
-	fmt.Println("get100:    ", result)
+	fmt.Println("Done!")
+	fmt.Println("Lookup took: ", elapsed)
+	fmt.Println("Lookup result:", result)
 }
